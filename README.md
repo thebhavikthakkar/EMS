@@ -1,5 +1,6 @@
 How to run Project:
 	Setup Multiple Project as start up Project - WebUI & WebAPI 
+	Set Connection string in AppSettings 
 
 Loom (Project Explanation) : 
 
