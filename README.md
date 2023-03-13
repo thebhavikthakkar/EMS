@@ -13,13 +13,10 @@ Skeleton : CleanArchitecture - https://github.com/jasontaylordev/CleanArchitectu
 
 Projects:
 
-	- Core : Application - Domain - Infra 
-
-	- API
-
-	- WebUI
-
-	- Test : Integration / Unit
+	# Core : Application - Domain - Infra 
+	# API
+	# WebUI
+	# Test : Integration / Unit
 
 Yet to do:
 
