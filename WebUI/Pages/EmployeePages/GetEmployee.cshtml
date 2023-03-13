@@ -1,0 +1,79 @@
+﻿@page
+@model WebUI.Pages.EmployeePages.GetEmployeeModel
+<!-- AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<span class="text-primary">
+    <a href="/Index" class=" text-decoration-none">Home</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+    <a href="/EmployeePages/GetEmployee" class=" text-decoration-none">Employee</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+</span>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Employees</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="/EmployeePages/AddEmployee" class="btn btn-outline-primary">
+                <i class="bi bi-plus-lg"></i>
+            </a>
+        </div>
+    </div><br /><br />
+    <div class="text-end mb-3">
+        <input id="search" class="w-25" type="text" placeholder="Search..">
+    </div>
+    <table id="tableID" class="table table-bordered table-striped table-light" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>BirthDate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="data">
+            @foreach (var item in Model.employeeList.items)
+            {
+                <tr>
+                    <td>@item.employeeName</td>
+                    <td>@item.email</td>
+                    <td>@item.department</td>
+                    <td>@item.dob</td>
+                    <td>
+                        <div class="w-50 btn-group" role="group">
+                            <a asp-page="/EmployeePages/EditEmployee" asp-route-id="@item.id" class="btn btn-outline-primary mx-1">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form asp-page="/EmployeePages/DeleteEmployee" asp-route-id="@item.id" method="post">
+                                <button class="btn btn-outline-primary" type="submit"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <ul class="pagination">
+        @for (var i = 1; i <= Model.employeeList.totalPages; i++)
+        {
+            <li class="page-item @(i == Model.employeeList.pageNumber ? "active" : "")">
+                <a type="submit" asp-page="/EmployeePages/GetEmployee" asp-route-PageNumber="@i" asp-route-PageSize="10" class="page-link">@i</a>
+            </li>
+        }
+    </ul>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#data tr").filter(function () {
+                $(this).toggle($(this).text()
+                    .toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

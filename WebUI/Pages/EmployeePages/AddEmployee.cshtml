@@ -1,0 +1,52 @@
+﻿@page
+@model WebUI.Pages.EmployeePages.AddEmployeeModel
+
+<span class="text-primary">
+    <a href="/Index" class=" text-decoration-none">Home</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+    <a href="/EmployeePages/GetEmployee" class=" text-decoration-none">Employee</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+    <a href="/EmployeePages/AddEmployee" class=" text-decoration-none">Add Employee</a>
+    &nbsp;&nbsp;&nbsp;>>&nbsp;&nbsp;&nbsp;
+</span>
+<div class="container">
+    <form method="post">
+        <div class="h3 mt-4 mb-3">
+            Add Employee
+        </div>
+        <div class="form-control">
+            <div class="col-12 row mt-2">
+                <div class="col-6">
+                    <label asp-for="@Model.employee.employeeName"></label>
+                    <input type="text" asp-for="@Model.employee.employeeName" class="form-control" />
+                    <span class="text-danger" asp-validation-for="@Model.employee.employeeName"></span>
+                </div>
+                <div class="col-6">
+                    <label asp-for="@Model.employee.email"></label>
+                    <input type="email" asp-for="@Model.employee.email" class="form-control" />
+                    <span class="text-danger" asp-validation-for="@Model.employee.email"></span>
+                </div>
+                <div class="col-6 mt-3">
+                    <label asp-for="@Model.employee.department"></label>
+                    <input type="text" asp-for="@Model.employee.department" class="form-control" />
+                    <span class="text-danger" asp-validation-for="@Model.employee.department"></span>
+                </div>
+                <div class="col-6 mt-3">
+                    <label asp-for="@Model.employee.dob"></label>
+                    <input type="datetime-local" min="1950-01-01T00:00" max="2005-01-01T00:00" asp-for="@Model.employee.dob" class="form-control" />
+                </div>
+            </div>
+            <div class="mt-4 mb-2">
+                <center>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a class="btn btn-secondary ms-2" asp-page="/EmployeePages/GetEmployee">Back</a>
+                </center>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
